@@ -1,0 +1,16 @@
+{
+  "name": "sps-original",
+  "version": "1.0.0",
+  "description": "SPS Original project with Tailwind CSS",
+  "main": "src/index.html",
+  "scripts": {
+    "build:css": "npx tailwindcss -i ./src/main.css -o ./src/styles.css",
+    "watch:css": "npx tailwindcss -i ./src/main.css -o ./src/styles.css --watch",
+    "build": "npm run build:css"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.4"
+  }
+}
