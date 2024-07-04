@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var contentWrapper = document.querySelector(".content-wrapper");
   var navToggle = document.getElementById("nav-toggle");
   var closeMobileNav = document.getElementById("close-mobile-nav");
+  var currentScrollPosition = 0;
 
   header.style.backgroundColor = "transparent";
 
@@ -36,7 +37,6 @@ document.addEventListener("DOMContentLoaded", function () {
   contentWrapper.addEventListener("scroll", function () {
     var scrollTop = contentWrapper.scrollTop;
 
-    // Only execute the following logic on large screens
     if (window.innerWidth >= 768) {
       if (scrollTop > lastScrollTop) {
         nav.style.display = "none";
@@ -84,4 +84,25 @@ document.addEventListener("DOMContentLoaded", function () {
     .addEventListener("click", () => {
       swiper.slidePrev();
     });
+
+  var lightbox = document.getElementById("lightbox");
+  var lightboxImage = lightbox.querySelector("img");
+
+  document
+    .querySelector('[href="#lightbox"]')
+    .addEventListener("click", function (e) {
+      e.preventDefault();
+      currentScrollPosition = contentWrapper.scrollTop;
+      var imageSrc = this.getAttribute("data-image");
+      lightboxImage.src = imageSrc;
+      lightbox.style.display = "flex";
+      document.body.style.overflow = "hidden";
+    });
+
+  lightbox.addEventListener("click", function () {
+    lightbox.style.display = "none";
+    lightboxImage.src = "";
+    contentWrapper.scrollTop = currentScrollPosition;
+    document.body.style.overflow = "";
+  });
 });
