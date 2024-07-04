@@ -1,8 +1,7 @@
 # Node modules
 node_modules/
 
-# Tailwind CSS output
-src/styles.css
+
 
 # Logs
 logs
