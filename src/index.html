@@ -3,10 +3,576 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+      rel="stylesheet"
+    />
     <link href="./styles.css" rel="stylesheet" />
+    <link href="./main.css" rel="stylesheet" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css"
+      rel="stylesheet"
+    />
+
     <title>SPS Original</title>
   </head>
-  <body>
-    <h1 class="text-3xl font-bold underline">Hello world!</h1>
+  <body class="flex flex-col h-full overflow-x-hidden bg-neutral-800">
+    <div class="flex flex-col h-full">
+      <header
+        id="main-header"
+        class="fixed top-0 z-20 flex flex-col justify-center w-full transition-colors duration-300"
+      >
+        <div
+          class="flex justify-between items-center px-16 py-6 w-full max-md:px-5 max-md:w-full"
+        >
+          <img
+            loading="lazy"
+            src="./images/Entity.svg"
+            alt="Company logo"
+            class="shrink-0 max-w-full fill-white"
+          />
+          <img
+            loading="lazy"
+            src="./images/SPS-white.svg"
+            alt="Logo"
+            class="shrink-0 aspect-square hidden md:block"
+          />
+          <button
+            id="nav-toggle"
+            class="md:hidden flex items-center px-3 py-2 mr-2 border rounded text-white border-white"
+          >
+            <svg
+              class="fill-current h-3 w-3"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <title>Menu</title>
+              <path d="M0 3h20v2H0V3zm0 5h20v2H0V8zm0 5h20v2H0v-2z" />
+            </svg>
+          </button>
+        </div>
+        <nav
+          id="main-nav"
+          class="hidden md:flex flex-col md:flex-row justify-center px-16 w-full max-md:px-5 max-md:max-w-full transition-opacity duration-300 opacity-100"
+        >
+          <div
+            class="flex flex-1 gap-5 pr-20 text-base leading-6 text-white max-md:flex-wrap"
+          >
+            <div class="flex gap-4">
+              <div
+                class="flex flex-col justify-center px-4 pt-5 font-bold tracking-normal text-center whitespace-nowrap"
+              >
+                <a href="#">Home</a>
+                <div class="shrink-0 mt-4 h-1 bg-white rounded-lg"></div>
+              </div>
+              <a href="#" class="my-auto cursor-pointer">Service Catalogue</a>
+            </div>
+            <div class="flex gap-5 justify-between my-auto">
+              <a href="#" class="cursor-pointer">Branding Identity</a>
+              <a href="#" class="cursor-pointer">About</a>
+            </div>
+          </div>
+          <div class="flex gap-4 py-3 pl-20 max-md:flex-wrap">
+            <form
+              class="flex gap-2 py-2 pr-4 pl-2 text-sm leading-5 text-white whitespace-nowrap bg-black bg-opacity-20 rounded-full"
+            >
+              <img
+                loading="lazy"
+                src="./icons/Search.svg"
+                alt="Search icon"
+                class="shrink-0 aspect-square"
+              />
+              <label for="searchInput" class="sr-only">Search</label>
+              <input
+                id="searchInput"
+                type="search"
+                placeholder="Search..."
+                class="bg-transparent border-none text-white placeholder-white focus:outline-none"
+              />
+            </form>
+            <button
+              class="flex justify-center items-center px-2 w-10 h-10 bg-black bg-opacity-20 rounded-full"
+            >
+              <img
+                loading="lazy"
+                src="./icons/accesability-icon.svg"
+                alt="User icon"
+                class="w-6 aspect-square"
+              />
+            </button>
+            <button
+              class="flex gap-0 py-2 pr-2 pl-4 text-sm font-medium leading-5 text-white whitespace-nowrap bg-black bg-opacity-20 rounded-full"
+            >
+              <span class="my-auto">العربية</span>
+              <img
+                loading="lazy"
+                src="./icons/arrow-drop-down.svg"
+                alt="Language selection icon"
+                class="shrink-0 w-6 aspect-square"
+              />
+            </button>
+          </div>
+        </nav>
+        <nav
+          id="mobile-nav"
+          class="fixed inset-0 bg-black text-white hidden flex-col items-center justify-center z-30 px-5 py-10"
+        >
+          <button
+            id="close-mobile-nav"
+            class="absolute top-10 right-5 text-white"
+          >
+            <svg
+              class="h-6 w-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              ></path>
+            </svg>
+          </button>
+          <div
+            class="flex flex-1 flex-col gap-5 text-base leading-6 text-white"
+          >
+            <a href="#" class="py-2">Home</a>
+            <a href="#" class="py-2">Service Catalogue</a>
+            <a href="#" class="py-2">Branding Identity</a>
+            <a href="#" class="py-2">About</a>
+            <form
+              class="flex gap-2 py-2 text-sm leading-5 text-white whitespace-nowrap bg-black bg-opacity-20 rounded-full"
+            >
+              <img
+                loading="lazy"
+                src="./icons/Search.svg"
+                alt="Search icon"
+                class="shrink-0 aspect-square"
+              />
+              <label for="mobileSearchInput" class="sr-only">Search</label>
+              <input
+                id="mobileSearchInput"
+                type="search"
+                placeholder="Search..."
+                class="bg-transparent border-none text-white placeholder-white focus:outline-none"
+              />
+            </form>
+            <button
+              class="flex justify-center items-center px-2 w-10 h-10 bg-black bg-opacity-20 rounded-full"
+            >
+              <img
+                loading="lazy"
+                src="./icons/accesability-icon.svg"
+                alt="User icon"
+                class="w-6 aspect-square"
+              />
+            </button>
+            <button
+              class="flex gap-0 py-2 pr-2 pl-4 text-sm font-medium leading-5 text-white whitespace-nowrap bg-black bg-opacity-20 rounded-full"
+            >
+              <span class="my-auto">العربية</span>
+              <img
+                loading="lazy"
+                src="./icons/arrow-drop-down.svg"
+                alt="Language selection icon"
+                class="shrink-0 w-6 aspect-square"
+              />
+            </button>
+          </div>
+        </nav>
+      </header>
+
+      <div class="content-wrapper flex-1 overflow-y-auto">
+        <section
+          class="relative flex flex-col items-end pb-20 w-full min-h-[1083px] pt-[200px] overflow-hidden z-10"
+        >
+          <img
+            loading="lazy"
+            src="./images/Frame 227.png"
+            alt=""
+            class="absolute inset-0 w-full h-full object-cover"
+          />
+
+          <main
+            class="flex relative self-end mt-12 mb-3 w-full font-bold max-md:mt-10 max-w-[1314px] mx-auto justify-end"
+          >
+            <div class="flex flex-col px-5 max-md:w-full">
+              <img
+                loading="lazy"
+                src="./images/SPS.svg"
+                alt=""
+                class="w-[91px] mb-8"
+              />
+              <h1
+                class="text-7xl text-white uppercase leading-[72px] mb-4 w-[528px] max-md:w-full max-md:text-4xl"
+              >
+                Original
+              </h1>
+              <p
+                class="text-2xl font-medium leading-9 text-white w-[528px] mb-9 max-md:w-full max-md:text-base"
+              >
+                An integrated interactive self-service police station, which
+                offers around-the-clock smart security services while
+                maintaining total privacy.
+              </p>
+              <div
+                class="flex gap-8 mb-9 text-3xl text-white uppercase tracking-[3px] w-[528px]"
+              >
+                <div class="flex items-center gap-2">
+                  <img
+                    loading="lazy"
+                    src="./icons/icons8-clock 1.svg"
+                    alt="24/7 icon"
+                    class="w-8"
+                  />
+                  <span>24/7</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <img
+                    loading="lazy"
+                    src="./icons/icons8-engineering 1.svg"
+                    alt="Services icon"
+                    class="w-8"
+                  />
+                  <span>46 Services</span>
+                </div>
+              </div>
+              <div class="flex gap-4 w-full max-w-[397px]">
+                <button
+                  class="flex-1 px-7 py-3 text-white bg-red-600 shadow-xl max-md:px-5"
+                >
+                  Request Visit
+                </button>
+                <button
+                  class="flex-1 px-6 py-3 text-white border border-white max-md:px-5"
+                >
+                  Build Your SPS
+                </button>
+              </div>
+            </div>
+          </main>
+          <img
+            loading="lazy"
+            src="./icons/Scrolling Indicator.svg"
+            alt="Scrolling icon"
+            class="absolute bottom-20 left-1/2 transform -translate-x-1/2 w-8"
+          />
+        </section>
+
+        <section
+          class="flex flex-col relative items-start py-20 mt-0 w-full bg-neutral-900 max-md:max-w-full"
+        >
+          <div class="max-w-[1415px] mx-auto max-md:px-5 w-full">
+            <img
+              loading="lazy"
+              src="./icons/SPS-text.svg"
+              alt=""
+              class="mt-40 aspect-[1.96] w-[39px] max-md:mt-10 max-md:ml-2.5"
+            />
+            <img
+              loading="lazy"
+              src="./icons/Ellipse 33.svg"
+              alt="Ellipse"
+              class="absolute top-0 left-0 pointer-events-none"
+            />
+            <h2
+              class="mt-4 mb-8 text-7xl font-bold text-white uppercase leading-[66.6px] max-md:max-w-full max-md:text-4xl"
+            >
+              EXTERNAL view
+            </h2>
+          </div>
+          <div
+            class="swiper-container relative w-full h-[800px] overflow-hidden"
+          >
+            <div class="swiper-wrapper flex">
+              <div
+                class="swiper-slide relative transition-transform duration-500 w-[1314px] h-[739px] mr-8"
+              >
+                <div
+                  class="flex overflow-hidden size-full relative flex-col justify-center items-end px-16 py-20 aspect-[0.37] max-md:px-5"
+                >
+                  <img
+                    loading="lazy"
+                    src="./images/Rectangle 217.png"
+                    alt="External view left"
+                    class="object-cover absolute inset-0 w-full h-full"
+                  />
+                </div>
+              </div>
+              <div
+                class="swiper-slide relative transition-transform duration-500 w-[1314px] h-[739px] mr-8"
+              >
+                <img
+                  loading="lazy"
+                  src="./images/Rectangle 210.png"
+                  alt="External view center"
+                  class="w-full h-full aspect-[1.79] max-md:max-w-full"
+                />
+              </div>
+              <div
+                class="swiper-slide relative transition-transform duration-500 w-[1314px] h-[739px] mr-8"
+              >
+                <div
+                  class="flex overflow-hidden size-full relative flex-col justify-center items-start px-16 py-20 aspect-[0.37] max-md:px-5"
+                >
+                  <img
+                    loading="lazy"
+                    src="./images/Rectangle 216.png"
+                    alt="External view right"
+                    class="object-cover absolute inset-0 w-full h-full"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Add Navigation -->
+            <div class="swiper-button-next text-white"></div>
+            <div class="swiper-button-prev text-white"></div>
+          </div>
+        </section>
+
+        <div class="relative">
+          <img
+            loading="lazy"
+            src="./icons/Ellipse 33.svg"
+            alt="Ellipse"
+            class="absolute top-0 left-0 pointer-events-none"
+          />
+          <section
+            class="flex flex-col items-start m-auto self-center px-5 mt-64 w-full uppercase max-w-[1312px] max-md:mt-10 max-md:max-w-full"
+          >
+            <div
+              class="flex gap-3.5 ml-2.5 text-3xl leading-10 text-white whitespace-nowrap"
+            >
+              <h3 class="grow">Minimum</h3>
+              <img
+                loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/2b01ee284f33780778150677b40d4bca49130d711434f547fcb2d4d06b071ec4?apiKey=9810db3822b54ab583e896edd833d595&"
+                alt=""
+                class="shrink-0 aspect-[1.96] w-[39px]"
+              />
+            </div>
+            <h2
+              class="mt-7 ml-2.5 text-7xl font-bold text-white leading-[67px] w-[852px] max-md:max-w-full max-md:text-4xl max-md:leading-10"
+            >
+              Functional requirements
+            </h2>
+            <div
+              class="relative mt-9 w-[1312px] h-[740px] max-md:max-w-full bg-cover bg-center bg-no-repeat mix-blend-screen saturate-[2.5]"
+              style="background-image: url('./images/floor-plan_a 1.png')"
+            >
+              <div
+                class="tooltip bg-red-600 w-5 h-5 rounded-full"
+                style="top: 20%; left: 30%"
+                data-tooltip="Point 1"
+              ></div>
+              <div
+                class="tooltip bg-red-600 w-5 h-5 rounded-full"
+                style="top: 40%; left: 50%"
+                data-tooltip="Point 2"
+              ></div>
+              <div
+                class="tooltip bg-red-600 w-5 h-5 rounded-full"
+                style="top: 60%; left: 70%"
+                data-tooltip="Point 3"
+              ></div>
+              <div
+                class="tooltip bg-red-600 w-5 h-5 rounded-full"
+                style="top: 80%; left: 20%"
+                data-tooltip="Point 4"
+              ></div>
+              <a
+                href="./images/floor-plan_a 1.png"
+                data-fancybox="gallery"
+                data-caption="Functional requirements diagram"
+                class="absolute bottom-5 right-5 bg-gray-800 w-12 h-12 rounded-full flex items-center justify-center cursor-pointer"
+              >
+                <img
+                  src="./icons/zoom-icon.svg"
+                  alt="Zoom Icon"
+                  class="w-6 h-6"
+                />
+              </a>
+            </div>
+          </section>
+        </div>
+        <section
+          class="flex justify-center items-center px-16 py-20 max-md:px-5"
+        >
+          <div
+            class="mt-28 w-full max-w-[1312px] max-md:mt-10 max-md:max-w-full"
+          >
+            <div class="flex gap-5 max-md:flex-col max-md:gap-0">
+              <div class="flex flex-col w-[31%] max-md:ml-0 max-md:w-full">
+                <div class="flex flex-col text-white max-md:mt-10">
+                  <h2
+                    class="flex gap-3 pr-6 text-3xl leading-10 text-white uppercase max-md:pr-5"
+                  >
+                    <span>STAND ALONE</span>
+                    <img
+                      loading="lazy"
+                      src="./icons/SPS-text.svg"
+                      class="shrink-0 my-auto aspect-[1.96] w-[39px]"
+                      alt=""
+                    />
+                  </h2>
+                  <h1
+                    class="mt-4 text-5xl font-bold leading-10 uppercase max-md:text-4xl"
+                  >
+                    DIGITAL Specifications
+                  </h1>
+                  <ul class="mt-8 text-2xl leading-9 list-disc list-inside">
+                    <li>Interactive Screens</li>
+                    <li>Queue System</li>
+                    <li>Dubai Police Video Game</li>
+                    <li>Kiosks</li>
+                    <li>iPad Stations</li>
+                    <li>3D Models</li>
+                    <li>Virtual Reality Simulator</li>
+                  </ul>
+
+                  <a
+                    href="#"
+                    class="flex gap-2 py-2 pr-2.5 mt-8 text-sm tracking-normal leading-5 text-center underline"
+                  >
+                    <span>Learn more about digital specifications</span>
+                    <img loading="lazy" src="./icons/Arrow.svg" alt="" />
+                  </a>
+                </div>
+              </div>
+              <div class="flex flex-col ml-5 w-[69%] max-md:ml-0 max-md:w-full">
+                <img
+                  loading="lazy"
+                  src="./images/Rectangle 207.jpg"
+                  class="grow w-full aspect-[1.72] max-md:mt-10 max-md:max-w-full"
+                  alt="Digital specifications visual representation"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+        <section
+          class="relative flex flex-col justify-center p-20 font-bold min-h-[930px] max-md:px-5"
+        >
+          <img
+            loading="lazy"
+            src="./images/07 Partners.png"
+            alt=""
+            class="absolute inset-0 w-full h-full object-cover z-0"
+          />
+          <div class="z-10 max-w-[1312px] m-auto w-full">
+            <header class="relative">
+              <h1
+                class="w-full text-3xl leading-10 text-white uppercase max-md:max-w-full"
+              >
+                SMART POLICE STATION
+              </h1>
+              <h2
+                class="mt-1 w-full text-8xl text-white uppercase leading-[97px] max-w-[425px] max-md:max-w-full max-md:text-4xl max-md:leading-10"
+              >
+                THE NEW FACE OF POLICING IN DUBAI
+              </h2>
+            </header>
+            <nav
+              class="relative flex gap-4 self-start mt-8 text-base tracking-normal leading-6 text-center z-10"
+            >
+              <a
+                href="#"
+                class="justify-center px-7 py-3 text-white bg-red-600 shadow-xl max-md:px-5"
+                role="button"
+              >
+                Request Visit
+              </a>
+              <a
+                href="#"
+                class="justify-center px-6 py-3 text-white border border-white border-solid max-md:px-5"
+                role="button"
+              >
+                Build Your SPS
+              </a>
+            </nav>
+          </div>
+        </section>
+
+        <footer
+          class="flex flex-col justify-center px-6 w-full bg-white shadow-sm max-md:px-5 max-md:max-w-full"
+        >
+          <div
+            class="flex flex-wrap gap-4 justify-between max-w-[1920px] w-full mx-auto"
+          >
+            <div
+              class="flex gap-4 py-2 pr-20 max-md:pr-0 max-md:justify-center max-md:w-full"
+            >
+              <img
+                loading="lazy"
+                src="./icons/04.svg"
+                alt="Social media icon 1"
+                class="shrink-0 w-8 aspect-square"
+              />
+              <img
+                loading="lazy"
+                src="./icons/Happiness.svg"
+                alt="Social media icon 2"
+                class="shrink-0 w-8 aspect-square"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4 py-2 pl-20 text-base leading-6 text-zinc-600 max-md:pl-0 max-md:justify-center max-md:w-full"
+            >
+              <a
+                href="#"
+                class="flex gap-2 justify-center py-3.5 pr-6 pl-4 max-md:py-2"
+              >
+                <img
+                  loading="lazy"
+                  src="./icons/Icon.svg"
+                  alt="Location icon"
+                  class="shrink-0 my-auto w-5 aspect-square"
+                />
+                <span>Find Us</span>
+              </a>
+              <a
+                href="#"
+                class="flex gap-2 justify-center py-3.5 pr-6 pl-4 whitespace-nowrap max-md:py-2"
+              >
+                <img
+                  loading="lazy"
+                  src="./icons/Icon-3.svg"
+                  alt="Media icon"
+                  class="shrink-0 my-auto w-5 aspect-square"
+                />
+                <span>Media</span>
+              </a>
+              <a
+                href="#"
+                class="flex gap-2 justify-center py-3.5 pr-6 pl-4 max-md:py-2"
+              >
+                <img
+                  loading="lazy"
+                  src="./icons/Icon-1.svg"
+                  alt="Contact icon"
+                  class="shrink-0 my-auto w-5 aspect-square"
+                />
+                <span>Contact Us</span>
+              </a>
+              <img
+                loading="lazy"
+                src="./icons/chat-bubble-outline-24px.svg"
+                alt="Additional icon"
+                class="shrink-0 my-auto w-8 aspect-square max-md:my-2"
+              />
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="./scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
   </body>
 </html>

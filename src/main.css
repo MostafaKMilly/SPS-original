@@ -1,4 +1,74 @@
-/* src/main.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html,
+body {
+  overflow-x: hidden;
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+.content-wrapper {
+  flex: 1;
+  overflow-y: auto;
+}
+.tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 23px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+}
+.tooltip:hover::after {
+  display: block;
+}
+.modal {
+  display: none;
+}
+
+.swiper-slide:not(.swiper-slide-active)::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+.tooltip {
+  position: absolute;
+  background: red;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+}
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  display: none;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.tooltip:hover::after {
+  content: attr(data-tooltip);
+  display: block;
+}
